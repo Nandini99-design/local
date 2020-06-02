@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script type="text/javascript">
+    var app=angular.module("sample",[]);
+    app.controller("emp",function($scope){
+      $scope.Name="Nandini";
+      $scope.Salary=8250;
+      $scope.getAnnualSal=function(){
+        return (this.Salary)*12;
+      }
+    });
+    app.controller("customerInfo",["$scope",function($scope){
+      $scope.Name="Sai Nandini";
+      $scope.city="Cincinnati"
+    }])
+  </script>
+  </head>
+  <body ng-app="sample">
+    <div ng-controller="emp">
+      Hello {{Name}} looks like your Salary is {{Salary}}.And your annual salry is {{getAnnualSal()}}
+    </div>
+    <div ng-controller="customerInfo">
+      Hello Customer {{Name}} looks like you are living in {{city}}
+    </div>
+
+  </body>
+</html>

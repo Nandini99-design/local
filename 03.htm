@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script type="text/javascript">
+  var sample=angular.module("sample",[]).run(["$rootScope",function($rootScope){
+    $rootScope.TaxPercent=30;
+  }]);
+  sample.controller("emp",["$scope",function($scope){
+    $scope.Name="Nandini";
+  }]);
+  sample.controller("empDetails",["$scope",function($scope){
+    $scope.Salary=8250;
+    $scope.dept="Sales";
+  }]);
+  sample.controller("empPayCheck",["$scope","$rootScope",function($scope,$rootScope){
+    $scope.getTaxes=function(){
+      return $scope.Salary*($rootScope.TaxPercent/100);
+    };
+    $scope.getNet=function(){
+      return $scope.Salary - $scope.getTaxes();
+    };
+  }]);
+  </script>
+
+  </head>
+  <body ng-app="sample">
+    <div ng-controller="emp">
+      Employee details of <strong>{{Name}}</strong>
+      <div ng-controller="empDetails">
+        <strong>{{Name}}</strong> earns {{Salary}} and works in {{dept}}.
+        <div ng-controller="empPayCheck">
+          Taxes :{{getTaxes()}}<br>
+          Net : {{getNet()}}
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
